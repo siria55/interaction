@@ -16,7 +16,9 @@
     "@react-three/fiber": "^8.15.12",
     "@react-three/drei": "^9.88.13",
     "three": "^0.158.0",
-    "@types/three": "^0.158.3"
+    "@types/three": "^0.158.3",
+    "@tensorflow/tfjs": "^4.15.0",
+    "@tensorflow/tfjs-node": "^4.15.0"
   },
   "devDependencies": {
     "typescript": "^5.3.3",

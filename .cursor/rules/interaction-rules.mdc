@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+
+## 总体描述
+
+nextjs 前端项目，用户交互演示
+
+- 用 framer-motion or react-three-fiber (three.js) 多加些动画，增加表现力
+- 是给初中生/小学生用的，颜色鲜艳点，动画多点，美术风格活泼
+- 文档放在 ./docs 中
+- 没有用的文件改删就删

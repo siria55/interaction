@@ -41,7 +41,7 @@ export default function Interaction6Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-orange-600 mb-1">
-            📝 交互6：选择题
+            📝 选择题
           </h1>
           <p className="text-sm text-gray-700">
             学生可以选择，然后验证答案！

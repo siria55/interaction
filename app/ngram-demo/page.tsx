@@ -42,7 +42,7 @@ export default function Interaction8Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-indigo-600 mb-1">
-            📊 交互8：N-gram算法演示
+            📊 N-gram算法演示
           </h1>
           <p className="text-sm text-gray-700">
             学习N-gram算法如何统计词频和预测下一个词！

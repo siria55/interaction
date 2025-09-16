@@ -38,7 +38,7 @@ export default function Home() {
             <p className="text-xs text-gray-600">选择题与填空题的小练习</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
-            {/* 交互6：选择题 */}
+            {/* 选择题 */}
             <Link href="/quiz-choice">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-orange-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">📝</div>
@@ -48,7 +48,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            {/* 交互7：填空题 */}
+            {/* 填空题 */}
             <Link href="/quiz-fill">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-red-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">✏️</div>
@@ -72,7 +72,7 @@ export default function Home() {
             <p className="text-xs text-gray-600">从图像与分类直观入门机器学习</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
-            {/* 交互1：手写数字识别 */}
+            {/* 手写数字识别 */}
             <Link href="/digits-handwriting">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-purple-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">✏️</div>
@@ -82,7 +82,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            {/* 交互2：像素数字编辑 */}
+            {/* 像素数字编辑 */}
             <Link href="/pixels-editor">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-blue-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🎨</div>
@@ -92,7 +92,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            {/* 交互3：机器学习分类 */}
+            {/* 机器学习分类 */}
             <Link href="/plane-classification">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-orange-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🎯</div>
@@ -116,7 +116,7 @@ export default function Home() {
             <p className="text-xs text-gray-600">体验自回归与不同语料风格的文本生成</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
-            {/* 交互4：大语言模型文字接龙 */}
+            {/* 大语言模型文字接龙 */}
             <Link href="/text-chain">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-green-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🤖</div>
@@ -126,7 +126,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            {/* 交互5：不同预料训练的模型的文字接龙 */}
+            {/* 不同预料训练的模型的文字接龙 */}
             <Link href="/corpus-text-chain">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-purple-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🤖</div>
@@ -136,7 +136,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            {/* 交互8：N-gram算法演示 */}
+            {/* N-gram算法演示 */}
             <Link href="/ngram-demo">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-indigo-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">📊</div>

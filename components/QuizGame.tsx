@@ -117,7 +117,7 @@ export default function QuizGame({ onQuizComplete }: QuizGameProps) {
       {/* 顶部说明 */}
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-purple-600 mb-2">
-          🤖 交互5：大语言模型文字接龙
+          🤖 大语言模型文字接龙
         </h3>
         <p className="text-gray-600 mb-4">
           选择一个模型并输入一些起始词。如果你缺乏灵感，试试输入"今天"，看看每个模型会给你什么！

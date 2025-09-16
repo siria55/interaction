@@ -45,7 +45,7 @@ export default function Interaction3Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-orange-600 mb-1">
-            🎯 交互3：机器学习分类
+            🎯 机器学习分类
           </h1>
           <p className="text-sm text-gray-700">
             拖拽角度和偏移参数调整分割直线，尽可能把两种颜色的点分开！

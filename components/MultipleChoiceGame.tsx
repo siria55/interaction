@@ -159,7 +159,7 @@ export default function MultipleChoiceGame({ onQuizComplete }: MultipleChoiceGam
     >
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-purple-600 mb-2">
-          📝 交互5：AI知识选择题
+          📝 AI知识选择题
         </h3>
         <p className="text-gray-600 mb-2">
           测试你对AI和机器学习的理解！

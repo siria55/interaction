@@ -54,7 +54,7 @@ export default function Interaction2Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-blue-600 mb-1">
-            🎨 交互2：像素数字编辑
+            🎨 像素数字编辑
           </h1>
           <p className="text-sm text-gray-700">
             点击像素切换黑白，将数字3变成数字7！

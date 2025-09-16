@@ -144,7 +144,7 @@ export default function FillInTheBlankGame({ onGameComplete }: FillInTheBlankGam
     >
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-orange-600 mb-2">
-          ✏️ 交互6：AI知识填空题
+          ✏️ AI知识填空题
         </h3>
         <p className="text-gray-600 mb-2">
           选择正确的词来补全句子！

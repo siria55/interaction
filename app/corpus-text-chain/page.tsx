@@ -46,7 +46,7 @@ export default function Interaction5Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-purple-600 mb-1">
-            🤖 交互5：不同预料训练的模型的文字接龙
+            🤖 不同预料训练的模型的文字接龙
           </h1>
           <p className="text-sm text-gray-700">
             选择古文、数学或童话模型，体验不同语料库训练的文字接龙！

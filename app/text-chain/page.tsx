@@ -41,7 +41,7 @@ export default function Interaction5Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-purple-600 mb-1">
-            🤖 交互4：大语言模型文字接龙
+            🤖 大语言模型文字接龙
           </h1>
           <p className="text-sm text-gray-700">
             用户输入一个字，猜后面的字！

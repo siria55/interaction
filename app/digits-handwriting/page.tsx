@@ -76,7 +76,7 @@ export default function Interaction1Page() {
             ← 返回主页
           </Link>
           <h1 className="text-2xl font-bold text-purple-600 mb-1">
-            ✏️ 交互1：手写数字识别
+            ✏️ 手写数字识别
           </h1>
           <p className="text-sm text-gray-700">
             手写数字让AI识别，学习AI的工作原理！

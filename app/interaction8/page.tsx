@@ -24,7 +24,7 @@ export default function Interaction8Page() {
   }
 
   return (
-    <main className="h-screen relative overflow-hidden">
+    <main className="min-h-screen relative">
       <ColorfulBackground />
       
       <div className="relative z-10 h-full flex flex-col">

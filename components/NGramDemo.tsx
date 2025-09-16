@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface NGramDemoProps {
   onDemoComplete: (isComplete: boolean) => void
@@ -18,6 +18,11 @@ interface BigramCount {
   count: number
 }
 
+interface CorpusBigram {
+  pair: [string, string]
+  count: number
+}
+
 export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDemoProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
@@ -25,19 +30,29 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
   const [bigramCounts, setBigramCounts] = useState<BigramCount[]>([])
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showAnswer, setShowAnswer] = useState(false)
-  const [demoStep, setDemoStep] = useState(0)
   const [currentMode, setCurrentMode] = useState<'unigram' | 'bigram'>('unigram')
 
   const sentence = "今天天气很好，我们去公园散步，看看美丽的花朵"
   const words = sentence.split('')
 
-  const unigramQuestion = "在这句话中，哪个字出现得最多？"
-  const unigramOptions = ["的", "花", "美"]
+  const unigramQuestion = '在这句话中，哪个字出现得最多？'
+  const unigramOptions = ['的', '花', '美']
   const unigramCorrectAnswer = 0 // "的"
 
-  const bigramQuestion = "在这句话中，哪个字符对出现得最多？"
-  const bigramOptions = ["今天", "天气", "很好"]
-  const bigramCorrectAnswer = 0 // "今天" (假设)
+  const bigramQuestion = '参考下表，为句子选择最自然的词语组合：'
+  const bigramOptions = ['热油', '清汤', '白糖']
+  const bigramCorrectAnswer = 0 // "热油"
+
+  const bigramCorpusData: CorpusBigram[] = [
+    { pair: ['热', '油'], count: 158 },
+    { pair: ['锅', '中'], count: 141 },
+    { pair: ['翻', '炒'], count: 129 },
+    { pair: ['青', '菜'], count: 124 },
+    { pair: ['加', '入'], count: 113 },
+    { pair: ['调', '味'], count: 107 },
+    { pair: ['香', '味'], count: 96 },
+    { pair: ['出', '锅'], count: 88 }
+  ]
 
   // 模拟词频统计
   const simulateWordCounting = () => {
@@ -45,7 +60,6 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
     setCurrentWordIndex(0)
     setWordCounts([])
     setBigramCounts([])
-    setDemoStep(1)
 
     let index = 0
     const interval = setInterval(() => {
@@ -88,7 +102,6 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
       } else {
         clearInterval(interval)
         setIsPlaying(false)
-        setDemoStep(2)
         onDemoComplete(true)
       }
     }, 300)
@@ -99,7 +112,6 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
     
     setSelectedAnswer(index)
     setShowAnswer(true)
-    setDemoStep(3)
     
     // 用户回答问题后，通知父组件
     if (onAnswerComplete) {
@@ -128,8 +140,12 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
     setBigramCounts([])
     setSelectedAnswer(null)
     setShowAnswer(false)
-    setDemoStep(0)
   }
+
+  useEffect(() => {
+    setSelectedAnswer(null)
+    setShowAnswer(false)
+  }, [currentMode])
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 border-4 border-indigo-200 max-w-6xl mx-auto">
@@ -305,6 +321,61 @@ export default function NGramDemo({ onDemoComplete, onAnswerComplete }: NGramDem
         <h3 className="text-xl font-semibold text-gray-800 text-center">
           {getCurrentQuestion()}
         </h3>
+
+        {currentMode === 'bigram' && (
+          <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4 space-y-3">
+            <p className="text-sm text-indigo-800">
+              下表列出了语料库中最常见的双字组合，我们可以根据它们来预测下一个词语。
+            </p>
+            <div className="overflow-hidden rounded-lg border border-indigo-200 shadow-sm">
+              <table className="w-full text-left text-sm text-gray-700">
+                <thead className="bg-indigo-100">
+                  <tr>
+                    <th className="px-4 py-2 font-semibold">双字组合</th>
+                    <th className="px-4 py-2 font-semibold text-right">出现次数</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bigramCorpusData.map((item, index) => (
+                    <tr
+                      key={`${item.pair[0]}-${item.pair[1]}`}
+                      className={index % 2 === 0 ? 'bg-white' : 'bg-indigo-50'}
+                    >
+                      <td className="px-4 py-2">
+                        {`('${item.pair[0]}', '${item.pair[1]}')`}
+                      </td>
+                      <td className="px-4 py-2 text-right font-semibold text-indigo-800">
+                        {item.count}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-2 bg-white border border-indigo-200 rounded-lg px-4 py-3">
+              <span className="text-base text-gray-800">请把蔬菜倒入</span>
+              <span
+                className={`min-w-[72px] text-center px-3 py-1.5 rounded-lg border-2 font-semibold transition-colors ${
+                  selectedAnswer === null && !showAnswer
+                    ? 'border-dashed border-indigo-300 text-indigo-400'
+                    : showAnswer
+                    ? getCurrentCorrectAnswer() === selectedAnswer
+                      ? 'border-green-500 bg-green-50 text-green-700'
+                      : 'border-red-500 bg-red-50 text-red-700'
+                    : 'border-indigo-400 bg-indigo-50 text-indigo-700'
+                }`}
+              >
+                {showAnswer
+                  ? getCurrentOptions()[getCurrentCorrectAnswer()]
+                  : selectedAnswer !== null
+                  ? getCurrentOptions()[selectedAnswer]
+                  : '____'}
+              </span>
+              <span className="text-base text-gray-800">中翻炒。</span>
+            </div>
+          </div>
+        )}
         
         <div className="flex justify-center space-x-4">
           {getCurrentOptions().map((option, index) => (

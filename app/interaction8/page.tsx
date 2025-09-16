@@ -13,13 +13,14 @@ export default function Interaction8Page() {
 
   const handleDemoComplete = (isComplete: boolean) => {
     setDemoComplete(isComplete)
-    
-    // 如果演示完成，自动进入原理讲解
-    if (isComplete) {
-      setTimeout(() => {
-        setCurrentMode('explanation')
-      }, 2000)
-    }
+    // 不再自动进入原理讲解，等待用户回答问题
+  }
+
+  const handleAnswerComplete = () => {
+    // 用户回答问题后，进入原理讲解
+    setTimeout(() => {
+      setCurrentMode('explanation')
+    }, 1000)
   }
 
   return (
@@ -58,6 +59,7 @@ export default function Interaction8Page() {
           >
             <NGramDemo 
               onDemoComplete={handleDemoComplete}
+              onAnswerComplete={handleAnswerComplete}
             />
           </motion.div>
         )}
@@ -102,7 +104,7 @@ export default function Interaction8Page() {
           >
             <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 max-w-md mx-auto">
               <p className="text-lg font-semibold text-green-600">
-                🎉 演示完成！正在为你准备原理讲解...
+                🎉 统计完成！请回答下面的问题
               </p>
             </div>
           </motion.div>

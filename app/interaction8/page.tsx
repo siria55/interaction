@@ -3,22 +3,22 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ColorfulBackground from '@/components/ColorfulBackground'
-import MultipleChoiceGame from '@/components/MultipleChoiceGame'
-import QuizTheoryExplanation from '@/components/QuizTheoryExplanation'
+import NGramDemo from '@/components/NGramDemo'
+import NGramTheoryExplanation from '@/components/NGramTheoryExplanation'
 import Link from 'next/link'
 
-export default function Interaction6Page() {
-  const [currentMode, setCurrentMode] = useState<'quiz' | 'explanation'>('quiz')
-  const [quizAccuracy, setQuizAccuracy] = useState(0)
+export default function Interaction8Page() {
+  const [currentMode, setCurrentMode] = useState<'demo' | 'explanation'>('demo')
+  const [demoComplete, setDemoComplete] = useState(false)
 
-  const handleQuizComplete = (accuracy: number) => {
-    setQuizAccuracy(accuracy)
+  const handleDemoComplete = (isComplete: boolean) => {
+    setDemoComplete(isComplete)
     
-    // 如果准确率很高，自动进入原理讲解
-    if (accuracy > 0.8) {
+    // 如果演示完成，自动进入原理讲解
+    if (isComplete) {
       setTimeout(() => {
         setCurrentMode('explanation')
-      }, 2000) // 延迟2秒让用户看到测验结果
+      }, 2000)
     }
   }
 
@@ -40,44 +40,25 @@ export default function Interaction6Page() {
           >
             ← 返回主页
           </Link>
-          <h1 className="text-2xl font-bold text-orange-600 mb-1">
-            📝 交互6：选择题
+          <h1 className="text-2xl font-bold text-indigo-600 mb-1">
+            📊 交互8：N-gram算法演示
           </h1>
           <p className="text-sm text-gray-700">
-            学生可以选择，然后验证答案！
+            学习N-gram算法如何统计词频和预测下一个词！
           </p>
         </motion.div>
 
-        {/* 测验页面 */}
-        {currentMode === 'quiz' && (
+        {/* 演示页面 */}
+        {currentMode === 'demo' && (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="flex-1 flex items-center justify-center px-4"
           >
-            <MultipleChoiceGame 
-              onQuizComplete={handleQuizComplete}
+            <NGramDemo 
+              onDemoComplete={handleDemoComplete}
             />
-            
-            {/* 控制按钮 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-8 text-center space-y-4"
-            >
-              <div className="flex justify-center space-x-4">
-                <motion.button
-                  onClick={() => setCurrentMode('explanation')}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary text-lg px-8 py-3"
-                >
-                  🎓 学习选择题原理
-                </motion.button>
-              </div>
-            </motion.div>
           </motion.div>
         )}
 
@@ -89,7 +70,7 @@ export default function Interaction6Page() {
             transition={{ duration: 0.8 }}
             className="flex-1 flex items-center justify-center px-4"
           >
-            <QuizTheoryExplanation 
+            <NGramTheoryExplanation 
               showExplanation={true}
             />
             
@@ -97,37 +78,32 @@ export default function Interaction6Page() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mt-6 text-center"
+              className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
             >
               <motion.button
-                onClick={() => setCurrentMode('quiz')}
+                onClick={() => setCurrentMode('demo')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary text-lg px-8 py-3"
+                className="btn-primary text-sm px-6 py-2"
               >
-                ✏️ 再试一次
+                📊 再试一次
               </motion.button>
             </motion.div>
           </motion.div>
         )}
 
-        {/* 测验结果提示 */}
-        {quizAccuracy > 0 && currentMode === 'quiz' && (
+        {/* 演示完成提示 */}
+        {demoComplete && currentMode === 'demo' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-6 text-center"
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
           >
             <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 max-w-md mx-auto">
               <p className="text-lg font-semibold text-green-600">
-                🎉 测验完成！准确率：{Math.round(quizAccuracy * 100)}%
+                🎉 演示完成！正在为你准备原理讲解...
               </p>
-              {quizAccuracy > 0.8 && (
-                <p className="text-sm text-gray-600 mt-2">
-                  太棒了！正在为你准备原理讲解...
-                </p>
-              )}
             </div>
           </motion.div>
         )}
@@ -140,8 +116,8 @@ export default function Interaction6Page() {
           className="text-center py-2"
         >
           <p className="text-sm text-gray-600">
-            {currentMode === 'quiz' && '学生可以选择，然后验证答案！ 📝🤖'}
-            {currentMode === 'explanation' && '学习选择题学习的原理！ 🎓📚'}
+            {currentMode === 'demo' && '学习N-gram算法如何统计词频和预测下一个词！ 📊🤖'}
+            {currentMode === 'explanation' && '现在你知道N-gram算法的工作原理了！ 🎓📚'}
           </p>
         </motion.div>
       </div>

@@ -7,11 +7,12 @@ import DrawingCanvas from '@/components/DrawingCanvas'
 import RecognitionResult from '@/components/RecognitionResult'
 import AccuracyAnalysis from '@/components/AccuracyAnalysis'
 import ImageTheoryExplanation from '@/components/ImageTheoryExplanation'
+import ImageRecognitionSteps from '@/components/ImageRecognitionSteps'
 import { recognizeDigit, RecognitionResult as RecognitionResultType } from '@/services/digitRecognition'
 import Link from 'next/link'
 
 export default function Interaction1Page() {
-  const [currentMode, setCurrentMode] = useState<'drawing' | 'result' | 'explanation'>('drawing')
+  const [currentMode, setCurrentMode] = useState<'drawing' | 'result' | 'steps' | 'explanation'>('drawing')
   const [recognitionResult, setRecognitionResult] = useState<RecognitionResultType | null>(null)
   const [isRecognizing, setIsRecognizing] = useState(false)
   const [imageData, setImageData] = useState<ImageData | null>(null)
@@ -25,11 +26,11 @@ export default function Interaction1Page() {
       setRecognitionResult(result)
       setCurrentMode('result')
       
-      // 如果识别成功且置信度高，自动进入原理讲解
+      // 如果识别置信度高，自动进入分步讲解
       if (result.confidence > 0.8) {
         setTimeout(() => {
-          setCurrentMode('explanation')
-        }, 3000) // 延迟3秒让用户看到识别结果
+          setCurrentMode('steps')
+        }, 2000)
       }
     } catch (error) {
       console.error('识别失败:', error)
@@ -48,28 +49,36 @@ export default function Interaction1Page() {
     setCurrentMode('explanation')
   }
 
+  const showSteps = () => {
+    setCurrentMode('steps')
+  }
+
+  const handleStepsComplete = () => {
+    setCurrentMode('explanation')
+  }
+
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="h-screen relative overflow-hidden">
       <ColorfulBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-8">
+      <div className="relative z-10 h-full flex flex-col">
         {/* 页面标题 */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-8"
+          className="text-center py-2"
         >
           <Link 
             href="/"
-            className="inline-block mb-4 text-blue-600 hover:text-blue-800 transition-colors"
+            className="inline-block mb-2 text-blue-600 hover:text-blue-800 transition-colors text-sm"
           >
             ← 返回主页
           </Link>
-          <h1 className="text-4xl font-bold text-purple-600 mb-2">
+          <h1 className="text-2xl font-bold text-purple-600 mb-1">
             ✏️ 交互1：手写数字识别
           </h1>
-          <p className="text-lg text-gray-700">
+          <p className="text-sm text-gray-700">
             手写数字让AI识别，学习AI的工作原理！
           </p>
         </motion.div>
@@ -80,9 +89,9 @@ export default function Interaction1Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-6xl mx-auto"
+            className="flex-1 flex items-center justify-center px-4"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-6xl">
               {/* 左侧：手写画布 */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -100,7 +109,7 @@ export default function Interaction1Page() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="space-y-6"
+                className="space-y-4"
               >
                 {/* 识别结果 */}
                 <RecognitionResult 
@@ -124,9 +133,9 @@ export default function Interaction1Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-6xl mx-auto"
+            className="flex-1 flex items-center justify-center px-4"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-6xl">
               {/* 左侧：手写画布 */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -144,7 +153,7 @@ export default function Interaction1Page() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="space-y-6"
+                className="space-y-4"
               >
                 {/* 识别结果 */}
                 <RecognitionResult 
@@ -165,27 +174,50 @@ export default function Interaction1Page() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="mt-8 text-center space-y-4"
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4"
               >
+                <motion.button
+                  onClick={showSteps}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-primary text-sm px-6 py-2"
+                >
+                  🎓 分步学习识别原理
+                </motion.button>
+                
                 <motion.button
                   onClick={showExplanation}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-primary text-lg px-8 py-3"
+                  className="btn-secondary text-sm px-6 py-2"
                 >
-                  🎓 了解AI识别原理
+                  📚 详细原理讲解
                 </motion.button>
                 
                 <motion.button
                   onClick={handleClear}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-secondary text-lg px-8 py-3 ml-4"
+                  className="btn-secondary text-sm px-6 py-2"
                 >
                   ✏️ 清除重写
                 </motion.button>
               </motion.div>
             )}
+          </motion.div>
+        )}
+
+        {/* 分步式讲解页面 */}
+        {currentMode === 'steps' && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 flex items-center justify-center px-4"
+          >
+            <ImageRecognitionSteps 
+              onComplete={handleStepsComplete}
+            />
           </motion.div>
         )}
 
@@ -195,10 +227,9 @@ export default function Interaction1Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
+            className="flex-1 flex items-center justify-center px-4"
           >
             <ImageTheoryExplanation 
-              imageData={imageData}
               showExplanation={true}
             />
             
@@ -206,13 +237,13 @@ export default function Interaction1Page() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mt-6 text-center"
+              className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
             >
               <motion.button
                 onClick={handleClear}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary text-lg px-8 py-3"
+                className="btn-primary text-sm px-6 py-2"
               >
                 ✏️ 再试一次
               </motion.button>
@@ -225,11 +256,12 @@ export default function Interaction1Page() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="text-center mt-16"
+          className="text-center py-2"
         >
-          <p className="text-lg text-gray-600">
+          <p className="text-sm text-gray-600">
             {currentMode === 'drawing' && '在左侧写数字，右侧实时显示识别结果！ ✏️🤖'}
             {currentMode === 'result' && '在左侧写数字，右侧实时显示识别结果！ ✏️🤖'}
+            {currentMode === 'steps' && '分步学习AI识别数字的原理！ 🎓📚'}
             {currentMode === 'explanation' && '现在你知道AI是怎么工作的了！ 🎓'}
           </p>
         </motion.div>

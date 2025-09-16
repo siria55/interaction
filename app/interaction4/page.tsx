@@ -23,28 +23,28 @@ export default function Interaction5Page() {
   }
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="h-screen relative overflow-hidden">
       <ColorfulBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-8">
+      <div className="relative z-10 h-full flex flex-col">
         {/* 页面标题 */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-8"
+          className="text-center py-2"
         >
           <Link 
             href="/"
-            className="inline-block mb-4 text-blue-600 hover:text-blue-800 transition-colors"
+            className="inline-block mb-2 text-blue-600 hover:text-blue-800 transition-colors text-sm"
           >
             ← 返回主页
           </Link>
-          <h1 className="text-4xl font-bold text-purple-600 mb-2">
-            🤖 交互5：大语言模型文字接龙
+          <h1 className="text-2xl font-bold text-purple-600 mb-1">
+            🤖 交互4：大语言模型文字接龙
           </h1>
-          <p className="text-lg text-gray-700">
-            体验不同语料库训练的大语言模型！
+          <p className="text-sm text-gray-700">
+            用户输入一个字，猜后面的字！
           </p>
         </motion.div>
 
@@ -54,7 +54,7 @@ export default function Interaction5Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
+            className="flex-1 flex items-center justify-center px-4"
           >
             <QuizGame 
               onQuizComplete={handleQuizComplete}
@@ -87,7 +87,7 @@ export default function Interaction5Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
+            className="flex-1 flex items-center justify-center px-4"
           >
             <QuizTheoryExplanation 
               showExplanation={true}
@@ -137,9 +137,9 @@ export default function Interaction5Page() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="text-center mt-16"
+          className="text-center py-2"
         >
-          <p className="text-lg text-gray-600">
+          <p className="text-sm text-gray-600">
             {currentMode === 'quiz' && '体验不同语料库训练的大语言模型！ 🤖📝'}
             {currentMode === 'explanation' && '学习大语言模型的原理！ 🎓📚'}
           </p>

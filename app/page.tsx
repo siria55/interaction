@@ -172,6 +172,26 @@ export default function Home() {
                 </div>
               </motion.div>
             </Link>
+
+            {/* 交互8：N-gram算法演示 */}
+            <Link href="/interaction8">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-indigo-200 cursor-pointer h-80 flex flex-col"
+              >
+                <div className="text-6xl mb-4 text-center">📊</div>
+                <h3 className="text-xl font-bold text-indigo-600 mb-3 text-center">
+                  交互8：N-gram算法演示
+                </h3>
+                <p className="text-gray-600 mb-4 flex-grow text-center">
+                  学习N-gram算法如何统计词频和预测下一个词！
+                </p>
+                <div className="text-sm text-gray-500 text-center">
+                  点击开始体验 →
+                </div>
+              </motion.div>
+            </Link>
           </div>
         </motion.div>
 

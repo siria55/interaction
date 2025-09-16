@@ -8,95 +8,102 @@ interface TextChainGameProps {
 }
 
 export default function TextChainGame({ onGameComplete }: TextChainGameProps) {
-  const [inputText, setInputText] = useState('')
-  const [gameHistory, setGameHistory] = useState<Array<{user: string, ai: string}>>([])
-  const [currentPrompt, setCurrentPrompt] = useState('')
+  const [selectedOption, setSelectedOption] = useState('')
+  const [gameHistory, setGameHistory] = useState<Array<{user: string, ai: string, correct: boolean}>>([])
+  const [currentTemplate, setCurrentTemplate] = useState<any>(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const [score, setScore] = useState(0)
   const [totalRounds, setTotalRounds] = useState(0)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [showResult, setShowResult] = useState(false)
 
-  // 预定义的提示词和对应的下一个字
-  const prompts = [
-    { text: '今天天气', next: '很' },
-    { text: '我喜欢', next: '吃' },
-    { text: '小猫在', next: '玩' },
-    { text: '春天来', next: '了' },
-    { text: '学习很', next: '有' },
-    { text: '朋友一', next: '起' },
-    { text: '妈妈做', next: '饭' },
-    { text: '老师教', next: '书' },
-    { text: '小鸟飞', next: '翔' },
-    { text: '花朵开', next: '放' }
+  // 预定义的句子模板，用户需要补全
+  const sentenceTemplates = [
+    { 
+      prefix: '今天天气',
+      options: ['很', '真', '不', '很'],
+      correct: '很',
+      full: '今天天气很好'
+    },
+    { 
+      prefix: '我喜欢',
+      options: ['吃', '看', '玩', '学'],
+      correct: '吃',
+      full: '我喜欢吃饭'
+    },
+    { 
+      prefix: '小猫在',
+      options: ['玩', '睡', '跑', '叫'],
+      correct: '玩',
+      full: '小猫在玩耍'
+    },
+    { 
+      prefix: '春天来',
+      options: ['了', '到', '临', '到'],
+      correct: '了',
+      full: '春天来了'
+    },
+    { 
+      prefix: '学习很',
+      options: ['有', '重', '难', '好'],
+      correct: '有',
+      full: '学习很有趣'
+    }
   ]
 
   // 开始新游戏
   const startNewGame = () => {
-    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)]
-    setCurrentPrompt(randomPrompt.text)
+    const randomTemplate = sentenceTemplates[Math.floor(Math.random() * sentenceTemplates.length)]
+    setCurrentTemplate(randomTemplate)
     setGameHistory([])
-    setInputText('')
+    setSelectedOption('')
     setScore(0)
     setTotalRounds(0)
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
+    setShowResult(false)
   }
 
-  // 模拟AI生成下一个字
-  const generateNextChar = (text: string): string => {
-    // 简单的规则基础预测
-    const lastChar = text[text.length - 1]
+  // 处理用户选择
+  const handleOptionSelect = (option: string) => {
+    if (isGenerating || showResult) return
     
-    // 基于最后一个字的简单预测规则
-    const predictions: { [key: string]: string[] } = {
-      '很': ['好', '棒', '美', '快', '慢'],
-      '吃': ['饭', '菜', '果', '糖', '面'],
-      '玩': ['具', '耍', '球', '水', '火'],
-      '了': ['吗', '吧', '呢', '啊', '呀'],
-      '有': ['趣', '用', '效', '益', '趣'],
-      '起': ['来', '床', '立', '飞', '跑'],
-      '饭': ['菜', '香', '好', '热', '冷'],
-      '书': ['本', '籍', '店', '包', '桌'],
-      '翔': ['在', '向', '到', '过', '去'],
-      '放': ['学', '假', '心', '松', '弃']
-    }
-
-    const possibleNext = predictions[lastChar] || ['的', '了', '在', '是', '有']
-    return possibleNext[Math.floor(Math.random() * possibleNext.length)]
-  }
-
-  // 处理用户输入
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!inputText.trim() || isGenerating) return
-
-    const userInput = inputText.trim()
-    const newTotalRounds = totalRounds + 1
-    setTotalRounds(newTotalRounds)
-
-    // 模拟AI生成
+    setSelectedOption(option)
     setIsGenerating(true)
+    
     setTimeout(() => {
-      const aiResponse = generateNextChar(currentPrompt + userInput)
-      const newHistory = [...gameHistory, { user: userInput, ai: aiResponse }]
+      const isCorrect = option === currentTemplate.correct
+      const aiResponse = currentTemplate.full
+      
+      const newHistory = [...gameHistory, { 
+        user: option, 
+        ai: aiResponse, 
+        correct: isCorrect 
+      }]
       setGameHistory(newHistory)
       
-      // 简单的评分逻辑：如果用户输入合理，给分
-      const isReasonable = userInput.length === 1 && /[\u4e00-\u9fa5]/.test(userInput)
-      if (isReasonable) {
+      if (isCorrect) {
         setScore(score + 1)
       }
-
-      setInputText('')
+      
+      const newTotalRounds = totalRounds + 1
+      setTotalRounds(newTotalRounds)
+      setShowResult(true)
       setIsGenerating(false)
       
       // 如果达到5轮，结束游戏
-      if (newTotalRounds >= 5) {
-        const accuracy = (score + (isReasonable ? 1 : 0)) / newTotalRounds
-        onGameComplete(accuracy)
+      if (newTotalRounds >= 4) {
+        setTimeout(() => {
+          const accuracy = (score + (isCorrect ? 1 : 0)) / (newTotalRounds + 1)
+          onGameComplete(accuracy)
+        }, 2000)
       }
     }, 1000) // 模拟AI思考时间
+  }
+
+  // 下一题
+  const nextQuestion = () => {
+    const randomTemplate = sentenceTemplates[Math.floor(Math.random() * sentenceTemplates.length)]
+    setCurrentTemplate(randomTemplate)
+    setSelectedOption('')
+    setShowResult(false)
   }
 
   // 组件挂载时开始游戏
@@ -113,60 +120,96 @@ export default function TextChainGame({ onGameComplete }: TextChainGameProps) {
     >
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-green-600 mb-2">
-          🤖 大语言模型文字接龙
+          🤖 大语言模型文字补全
         </h3>
         <p className="text-gray-600 mb-2">
-          输入一个字，AI会接下一个字，体验自回归模型！
+          选择正确的字补全句子，体验AI的预测能力！
         </p>
-        <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-3 max-w-2xl mx-auto">
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-3 max-w-2xl mx-auto">
           <p className="text-sm font-semibold text-green-700">
-            🎯 目标：和AI一起完成句子，体验语言模型的预测能力！
+            🎯 目标：选择最合适的字，完成句子！
           </p>
         </div>
       </div>
 
       {/* 当前句子显示 */}
-      <div className="bg-gray-50 rounded-xl p-4 mb-6">
-        <h4 className="text-lg font-semibold text-gray-700 mb-3">当前句子：</h4>
-        <div className="text-2xl font-bold text-gray-800 mb-2">
-          {currentPrompt}
-          {gameHistory.map((item, index) => (
-            <span key={index}>
-              <span className="text-blue-600">{item.user}</span>
-              <span className="text-green-600">{item.ai}</span>
-            </span>
-          ))}
-          {isGenerating && <span className="text-gray-400 animate-pulse">...</span>}
+      <div className="bg-gray-100 rounded-xl p-6 mb-6 border border-gray-300">
+        <div className="flex items-center justify-between mb-4">
+          <div className="bg-green-500 text-white px-3 py-1 rounded text-sm font-semibold">
+            T&C
+          </div>
+          <div className="text-gray-600 text-sm">第 {totalRounds + 1} 题</div>
         </div>
-        <p className="text-sm text-gray-500">
-          蓝色是AI的预测，绿色是你的输入
-        </p>
+        
+        <div className="bg-white rounded-lg p-4 mb-4 border border-gray-200">
+          <div className="text-2xl font-mono text-gray-800 mb-2">
+            {currentTemplate?.prefix}
+            <span className="text-green-500 animate-pulse">?</span>
+          </div>
+          {showResult && (
+            <div className="text-lg text-gray-600">
+              完整句子：{currentTemplate?.full}
+            </div>
+          )}
+        </div>
+        
+        {isGenerating && (
+          <div className="text-center">
+            <div className="text-green-500 animate-pulse">AI正在思考...</div>
+          </div>
+        )}
       </div>
 
-      {/* 输入表单 */}
-      <form onSubmit={handleSubmit} className="mb-6">
-        <div className="flex gap-4 items-center">
-          <input
-            ref={inputRef}
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="输入一个字..."
-            maxLength={1}
-            disabled={isGenerating}
-            className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-green-500 focus:outline-none disabled:bg-gray-100"
-          />
-          <motion.button
-            type="submit"
-            disabled={!inputText.trim() || isGenerating}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isGenerating ? '🤔 AI思考中...' : '🚀 提交'}
-          </motion.button>
+      {/* 选项选择 */}
+      {currentTemplate && !showResult && (
+        <div className="mb-6">
+          <h4 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+            选择最合适的字补全句子：
+          </h4>
+          <div className="grid grid-cols-2 gap-3">
+            {currentTemplate.options.map((option: string, index: number) => (
+              <motion.button
+                key={index}
+                onClick={() => handleOptionSelect(option)}
+                disabled={isGenerating}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`p-4 rounded-lg border-2 text-lg font-semibold transition-all ${
+                  selectedOption === option
+                    ? 'border-green-500 bg-green-100 text-green-700'
+                    : 'border-gray-300 bg-white text-gray-700 hover:border-green-400 hover:bg-green-50'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                {option}
+              </motion.button>
+            ))}
+          </div>
         </div>
-      </form>
+      )}
+
+      {/* 结果显示和下一题按钮 */}
+      {showResult && (
+        <div className="mb-6 text-center">
+          <div className={`text-2xl font-bold mb-4 ${
+            selectedOption === currentTemplate?.correct ? 'text-green-600' : 'text-red-600'
+          }`}>
+            {selectedOption === currentTemplate?.correct ? '✅ 正确！' : '❌ 错误'}
+          </div>
+          <div className="text-gray-600 mb-4">
+            正确答案是：<span className="text-green-600 font-bold">{currentTemplate?.correct}</span>
+          </div>
+          {totalRounds < 4 && (
+            <motion.button
+              onClick={nextQuestion}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary px-6 py-3 rounded-lg font-semibold"
+            >
+              下一题 →
+            </motion.button>
+          )}
+        </div>
+      )}
 
       {/* 游戏统计 */}
       <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 mb-6">
@@ -199,13 +242,26 @@ export default function TextChainGame({ onGameComplete }: TextChainGameProps) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg p-3 border border-gray-200"
+                className={`rounded-lg p-3 border ${
+                  item.correct 
+                    ? 'bg-green-50 border-green-200' 
+                    : 'bg-red-50 border-red-200'
+                }`}
               >
-                <span className="text-blue-600 font-semibold">你: </span>
-                <span className="text-gray-800">{item.user}</span>
-                <span className="mx-2">→</span>
-                <span className="text-green-600 font-semibold">AI: </span>
-                <span className="text-gray-800">{item.ai}</span>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-blue-600 font-semibold">你的选择: </span>
+                    <span className="text-gray-800">{item.user}</span>
+                  </div>
+                  <div className={`text-sm font-bold ${
+                    item.correct ? 'text-green-600' : 'text-red-600'
+                  }`}>
+                    {item.correct ? '✅' : '❌'}
+                  </div>
+                </div>
+                <div className="text-gray-600 text-sm mt-1">
+                  完整句子：{item.ai}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -218,7 +274,7 @@ export default function TextChainGame({ onGameComplete }: TextChainGameProps) {
           onClick={startNewGame}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="btn-secondary text-sm px-6 py-2"
+          className="btn-secondary px-6 py-2 rounded-lg font-semibold"
         >
           🔄 重新开始
         </motion.button>
@@ -229,9 +285,9 @@ export default function TextChainGame({ onGameComplete }: TextChainGameProps) {
         <div className="bg-gray-50 rounded-lg p-3">
           <h5 className="text-sm font-semibold text-gray-700 mb-2">🎮 游戏说明</h5>
           <div className="text-xs text-gray-600 space-y-1">
-            <p>• 输入一个字，AI会预测下一个字</p>
-            <p>• 体验大语言模型的自回归预测</p>
-            <p>• 完成5轮后自动结束游戏</p>
+            <p>• 选择最合适的字补全句子</p>
+            <p>• 体验大语言模型的预测能力</p>
+            <p>• 完成5题后自动结束游戏</p>
           </div>
         </div>
       </div>

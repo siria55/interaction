@@ -1,10 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { RecognitionResult } from '@/services/digitRecognition'
+import { RecognitionResult as RecognitionResultType } from '@/services/digitRecognition'
 
 interface RecognitionResultProps {
-  result: RecognitionResult | null
+  result: RecognitionResultType | null
   isRecognizing: boolean
 }
 

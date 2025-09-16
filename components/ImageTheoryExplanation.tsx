@@ -53,7 +53,7 @@ export default function ImageTheoryExplanation({ imageData, showExplanation }: I
           🎓 AI识别数字的原理
         </h3>
         <p className="text-gray-600">
-          让我们来看看AI是怎么"看懂"你写的数字的！
+          让我们来看看AI是怎么&ldquo;看懂&rdquo;你写的数字的！
         </p>
       </div>
 

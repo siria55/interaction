@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ColorfulBackground from '@/components/ColorfulBackground'
-import QuizGame from '@/components/QuizGame'
-import QuizTheoryExplanation from '@/components/QuizTheoryExplanation'
+import FillInTheBlankGame from '@/components/FillInTheBlankGame'
+import FillInTheBlankTheoryExplanation from '@/components/FillInTheBlankTheoryExplanation'
 import Link from 'next/link'
 
-export default function Interaction5Page() {
+export default function Interaction6Page() {
   const [currentMode, setCurrentMode] = useState<'quiz' | 'explanation'>('quiz')
   const [quizAccuracy, setQuizAccuracy] = useState(0)
 
@@ -40,11 +40,11 @@ export default function Interaction5Page() {
           >
             ← 返回主页
           </Link>
-          <h1 className="text-4xl font-bold text-purple-600 mb-2">
-            🤖 交互5：大语言模型文字接龙
+          <h1 className="text-4xl font-bold text-red-600 mb-2">
+            ✏️ 交互7：填空题
           </h1>
           <p className="text-lg text-gray-700">
-            体验不同语料库训练的大语言模型！
+            学生选词填空，然后可以验证答案！
           </p>
         </motion.div>
 
@@ -56,7 +56,7 @@ export default function Interaction5Page() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <QuizGame 
+            <FillInTheBlankGame 
               onQuizComplete={handleQuizComplete}
             />
             
@@ -74,7 +74,7 @@ export default function Interaction5Page() {
                   whileTap={{ scale: 0.95 }}
                   className="btn-primary text-lg px-8 py-3"
                 >
-                  🎓 学习大语言模型原理
+                  🎓 学习填空题原理
                 </motion.button>
               </div>
             </motion.div>
@@ -89,7 +89,7 @@ export default function Interaction5Page() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <QuizTheoryExplanation 
+            <FillInTheBlankTheoryExplanation 
               showExplanation={true}
             />
             
@@ -105,7 +105,7 @@ export default function Interaction5Page() {
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary text-lg px-8 py-3"
               >
-                📝 再试一次
+                ✏️ 再试一次
               </motion.button>
             </motion.div>
           </motion.div>
@@ -140,8 +140,8 @@ export default function Interaction5Page() {
           className="text-center mt-16"
         >
           <p className="text-lg text-gray-600">
-            {currentMode === 'quiz' && '体验不同语料库训练的大语言模型！ 🤖📝'}
-            {currentMode === 'explanation' && '学习大语言模型的原理！ 🎓📚'}
+            {currentMode === 'quiz' && '学生选词填空，然后可以验证答案！ ✏️📝'}
+            {currentMode === 'explanation' && '学习填空题学习的原理！ 🎓📚'}
           </p>
         </motion.div>
       </div>

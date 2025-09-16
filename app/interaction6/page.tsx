@@ -3,22 +3,22 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ColorfulBackground from '@/components/ColorfulBackground'
-import FillInTheBlankGame from '@/components/FillInTheBlankGame'
-import FillInTheBlankTheoryExplanation from '@/components/FillInTheBlankTheoryExplanation'
+import MultipleChoiceGame from '@/components/MultipleChoiceGame'
+import QuizTheoryExplanation from '@/components/QuizTheoryExplanation'
 import Link from 'next/link'
 
 export default function Interaction6Page() {
-  const [currentMode, setCurrentMode] = useState<'game' | 'explanation'>('game')
-  const [gameAccuracy, setGameAccuracy] = useState(0)
+  const [currentMode, setCurrentMode] = useState<'quiz' | 'explanation'>('quiz')
+  const [quizAccuracy, setQuizAccuracy] = useState(0)
 
-  const handleGameComplete = (accuracy: number) => {
-    setGameAccuracy(accuracy)
+  const handleQuizComplete = (accuracy: number) => {
+    setQuizAccuracy(accuracy)
     
     // 如果准确率很高，自动进入原理讲解
     if (accuracy > 0.8) {
       setTimeout(() => {
         setCurrentMode('explanation')
-      }, 2000) // 延迟2秒让用户看到游戏结果
+      }, 2000) // 延迟2秒让用户看到测验结果
     }
   }
 
@@ -36,28 +36,28 @@ export default function Interaction6Page() {
         >
           <Link 
             href="/"
-            className="inline-block mb-4 text-orange-600 hover:text-orange-800 transition-colors"
+            className="inline-block mb-4 text-blue-600 hover:text-blue-800 transition-colors"
           >
             ← 返回主页
           </Link>
           <h1 className="text-4xl font-bold text-orange-600 mb-2">
-            ✏️ 交互6：AI知识填空题
+            📝 交互6：选择题
           </h1>
           <p className="text-lg text-gray-700">
-            选择正确的词来补全句子！
+            学生可以选择，然后验证答案！
           </p>
         </motion.div>
 
-        {/* 游戏页面 */}
-        {currentMode === 'game' && (
+        {/* 测验页面 */}
+        {currentMode === 'quiz' && (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <FillInTheBlankGame 
-              onGameComplete={handleGameComplete}
+            <MultipleChoiceGame 
+              onQuizComplete={handleQuizComplete}
             />
             
             {/* 控制按钮 */}
@@ -72,9 +72,9 @@ export default function Interaction6Page() {
                   onClick={() => setCurrentMode('explanation')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-orange-500 text-white text-lg px-8 py-3 rounded-lg font-semibold hover:bg-orange-600"
+                  className="btn-primary text-lg px-8 py-3"
                 >
-                  🎓 学习填空题原理
+                  🎓 学习选择题原理
                 </motion.button>
               </div>
             </motion.div>
@@ -89,7 +89,7 @@ export default function Interaction6Page() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <FillInTheBlankTheoryExplanation 
+            <QuizTheoryExplanation 
               showExplanation={true}
             />
             
@@ -100,10 +100,10 @@ export default function Interaction6Page() {
               className="mt-6 text-center"
             >
               <motion.button
-                onClick={() => setCurrentMode('game')}
+                onClick={() => setCurrentMode('quiz')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-orange-500 text-white text-lg px-8 py-3 rounded-lg font-semibold hover:bg-orange-600"
+                className="btn-primary text-lg px-8 py-3"
               >
                 ✏️ 再试一次
               </motion.button>
@@ -111,19 +111,19 @@ export default function Interaction6Page() {
           </motion.div>
         )}
 
-        {/* 游戏结果提示 */}
-        {gameAccuracy > 0 && currentMode === 'game' && (
+        {/* 测验结果提示 */}
+        {quizAccuracy > 0 && currentMode === 'quiz' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
             className="mt-6 text-center"
           >
-            <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-4 max-w-md mx-auto">
-              <p className="text-lg font-semibold text-orange-600">
-                🎉 游戏完成！准确率：{Math.round(gameAccuracy * 100)}%
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 max-w-md mx-auto">
+              <p className="text-lg font-semibold text-green-600">
+                🎉 测验完成！准确率：{Math.round(quizAccuracy * 100)}%
               </p>
-              {gameAccuracy > 0.8 && (
+              {quizAccuracy > 0.8 && (
                 <p className="text-sm text-gray-600 mt-2">
                   太棒了！正在为你准备原理讲解...
                 </p>
@@ -140,8 +140,8 @@ export default function Interaction6Page() {
           className="text-center mt-16"
         >
           <p className="text-lg text-gray-600">
-            {currentMode === 'game' && '选择正确的词来补全句子！ ✏️📝'}
-            {currentMode === 'explanation' && '学习填空题学习的原理！ 🎓📚'}
+            {currentMode === 'quiz' && '学生可以选择，然后验证答案！ 📝🤖'}
+            {currentMode === 'explanation' && '学习选择题学习的原理！ 🎓📚'}
           </p>
         </motion.div>
       </div>

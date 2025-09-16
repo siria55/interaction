@@ -41,10 +41,10 @@ export default function Interaction5Page() {
             ← 返回主页
           </Link>
           <h1 className="text-4xl font-bold text-purple-600 mb-2">
-            📝 交互5：AI知识选择题
+            🤖 交互5：不同预料训练的模型的文字接龙
           </h1>
           <p className="text-lg text-gray-700">
-            测试你对AI和机器学习的理解！
+            选择古文、数学或童话模型，体验不同语料库训练的文字接龙！
           </p>
         </motion.div>
 
@@ -74,7 +74,7 @@ export default function Interaction5Page() {
                   whileTap={{ scale: 0.95 }}
                   className="btn-primary text-lg px-8 py-3"
                 >
-                  🎓 学习选择题原理
+                  🎓 学习大语言模型原理
                 </motion.button>
               </div>
             </motion.div>
@@ -140,8 +140,8 @@ export default function Interaction5Page() {
           className="text-center mt-16"
         >
           <p className="text-lg text-gray-600">
-            {currentMode === 'quiz' && '测试你对AI和机器学习的理解！ 📝🤖'}
-            {currentMode === 'explanation' && '学习选择题学习的原理！ 🎓📚'}
+            {currentMode === 'quiz' && '选择古文、数学或童话模型，体验不同语料库训练的文字接龙！ 🤖📝'}
+            {currentMode === 'explanation' && '学习大语言模型的原理！ 🎓📚'}
           </p>
         </motion.div>
       </div>

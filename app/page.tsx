@@ -32,22 +32,22 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-10xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {/* 交互1：手写数字识别 */}
             <Link href="/interaction1">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-purple-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-purple-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">✏️</div>
-                <h3 className="text-2xl font-bold text-purple-600 mb-3">
+                <div className="text-6xl mb-4 text-center">✏️</div>
+                <h3 className="text-xl font-bold text-purple-600 mb-3 text-center">
                   交互1：手写数字识别
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 flex-grow text-center">
                   手写数字让AI识别，学习AI的工作原理！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>
@@ -58,16 +58,16 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-blue-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-blue-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">🎨</div>
-                <h3 className="text-2xl font-bold text-blue-600 mb-3">
+                <div className="text-6xl mb-4 text-center">🎨</div>
+                <h3 className="text-xl font-bold text-blue-600 mb-3 text-center">
                   交互2：像素数字编辑
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 flex-grow text-center">
                   点击像素切换黑白，将数字3变成数字7！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>
@@ -78,16 +78,16 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-orange-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-orange-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-orange-600 mb-3">
+                <div className="text-6xl mb-4 text-center">🎯</div>
+                <h3 className="text-xl font-bold text-orange-600 mb-3 text-center">
                   交互3：机器学习分类
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 flex-grow text-center">
                   拖拽角度和偏移参数调整分割直线，尽可能把两种颜色的点分开！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>
@@ -98,56 +98,76 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-green-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-green-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">🤖</div>
-                <h3 className="text-2xl font-bold text-green-600 mb-3">
+                <div className="text-6xl mb-4 text-center">🤖</div>
+                <h3 className="text-xl font-bold text-green-600 mb-3 text-center">
                   交互4：大语言模型文字接龙
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  选择正确的字补全句子，体验自回归模型！
+                <p className="text-gray-600 mb-4 flex-grow text-center">
+                  用户输入一个字，猜后面的字！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>
             </Link>
 
-            {/* 交互5：AI知识选择题 */}
+            {/* 交互5：不同预料训练的模型的文字接龙 */}
             <Link href="/interaction5">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-purple-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-purple-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">📝</div>
-                <h3 className="text-2xl font-bold text-purple-600 mb-3">
-                  交互5：AI知识选择题
+                <div className="text-6xl mb-4 text-center">🤖</div>
+                <h3 className="text-xl font-bold text-purple-600 mb-3 text-center">
+                  交互5：不同预料训练的模型的文字接龙
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  测试你对AI和机器学习的理解！
+                <p className="text-gray-600 mb-4 flex-grow text-center">
+                  选择古文、数学或童话模型，体验不同语料库训练的文字接龙！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>
             </Link>
 
-            {/* 交互6：AI知识填空题 */}
+            {/* 交互6：选择题 */}
             <Link href="/interaction6">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-orange-200 cursor-pointer"
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-orange-200 cursor-pointer h-80 flex flex-col"
               >
-                <div className="text-6xl mb-4">✏️</div>
-                <h3 className="text-2xl font-bold text-orange-600 mb-3">
-                  交互6：AI知识填空题
+                <div className="text-6xl mb-4 text-center">📝</div>
+                <h3 className="text-xl font-bold text-orange-600 mb-3 text-center">
+                  交互6：选择题
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  选择正确的词来补全句子！
+                <p className="text-gray-600 mb-4 flex-grow text-center">
+                  学生可以选择，然后验证答案！
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 text-center">
+                  点击开始体验 →
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* 交互7：填空题 */}
+            <Link href="/interaction7">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-red-200 cursor-pointer h-80 flex flex-col"
+              >
+                <div className="text-6xl mb-4 text-center">✏️</div>
+                <h3 className="text-xl font-bold text-red-600 mb-3 text-center">
+                  交互7：填空题
+                </h3>
+                <p className="text-gray-600 mb-4 flex-grow text-center">
+                  学生选词填空，然后可以验证答案！
+                </p>
+                <div className="text-sm text-gray-500 text-center">
                   点击开始体验 →
                 </div>
               </motion.div>

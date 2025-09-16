@@ -39,20 +39,20 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
             {/* 交互6：选择题 */}
-            <Link href="/interaction6">
+            <Link href="/quiz-choice">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-orange-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">📝</div>
-                <h3 className="text-base font-bold text-orange-600 mb-1 text-center">交互6：选择题</h3>
+                <h3 className="text-base font-bold text-orange-600 mb-1 text-center">选择题</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">学生可以选择，然后验证答案！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
             </Link>
 
             {/* 交互7：填空题 */}
-            <Link href="/interaction7">
+            <Link href="/quiz-fill">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-red-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">✏️</div>
-                <h3 className="text-base font-bold text-red-600 mb-1 text-center">交互7：填空题</h3>
+                <h3 className="text-base font-bold text-red-600 mb-1 text-center">填空题</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">学生选词填空，然后可以验证答案！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
@@ -73,30 +73,30 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
             {/* 交互1：手写数字识别 */}
-            <Link href="/interaction1">
+            <Link href="/digits-handwriting">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-purple-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">✏️</div>
-                <h3 className="text-base font-bold text-purple-600 mb-1 text-center">交互1：手写数字识别</h3>
+                <h3 className="text-base font-bold text-purple-600 mb-1 text-center">手写数字识别</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">手写数字让AI识别，学习AI的工作原理！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
             </Link>
 
             {/* 交互2：像素数字编辑 */}
-            <Link href="/interaction2">
+            <Link href="/pixels-editor">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-blue-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🎨</div>
-                <h3 className="text-base font-bold text-blue-600 mb-1 text-center">交互2：像素数字编辑</h3>
+                <h3 className="text-base font-bold text-blue-600 mb-1 text-center">像素数字编辑</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">点击像素切换黑白，将数字3变成数字7！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
             </Link>
 
             {/* 交互3：机器学习分类 */}
-            <Link href="/interaction3">
+            <Link href="/plane-classification">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-orange-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🎯</div>
-                <h3 className="text-base font-bold text-orange-600 mb-1 text-center">交互3：机器学习分类</h3>
+                <h3 className="text-base font-bold text-orange-600 mb-1 text-center">机器学习分类</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">拖拽角度和偏移参数调整分割直线，尽可能把两种颜色的点分开！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
@@ -117,30 +117,30 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
             {/* 交互4：大语言模型文字接龙 */}
-            <Link href="/interaction4">
+            <Link href="/text-chain">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-green-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🤖</div>
-                <h3 className="text-base font-bold text-green-600 mb-1 text-center">交互4：大语言模型文字接龙</h3>
+                <h3 className="text-base font-bold text-green-600 mb-1 text-center">大语言模型文字接龙</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">用户输入一个字，猜后面的字！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
             </Link>
 
             {/* 交互5：不同预料训练的模型的文字接龙 */}
-            <Link href="/interaction5">
+            <Link href="/corpus-text-chain">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-purple-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">🤖</div>
-                <h3 className="text-base font-bold text-purple-600 mb-1 text-center">交互5：不同预料训练的模型的文字接龙</h3>
+                <h3 className="text-base font-bold text-purple-600 mb-1 text-center">不同预料训练的模型的文字接龙</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">选择古文、数学或童话模型，体验不同语料库训练的文字接龙！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>
             </Link>
 
             {/* 交互8：N-gram算法演示 */}
-            <Link href="/interaction8">
+            <Link href="/ngram-demo">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-indigo-200 cursor-pointer h-44 flex flex-col">
                 <div className="text-2xl mb-1 text-center">📊</div>
-                <h3 className="text-base font-bold text-indigo-600 mb-1 text-center">交互8：N-gram算法演示</h3>
+                <h3 className="text-base font-bold text-indigo-600 mb-1 text-center">N-gram算法演示</h3>
                 <p className="text-gray-600 mb-1 text-xs flex-grow text-center">学习N-gram算法如何统计词频和预测下一个词！</p>
                 <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
               </motion.div>

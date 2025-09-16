@@ -32,7 +32,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-10xl mx-auto">
             {/* 交互1：手写数字识别 */}
             <Link href="/interaction1">
               <motion.div
@@ -105,7 +105,47 @@ export default function Home() {
                   交互4：大语言模型文字接龙
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  输入一个字，AI会接下一个字，体验自回归模型！
+                  选择正确的字补全句子，体验自回归模型！
+                </p>
+                <div className="text-sm text-gray-500">
+                  点击开始体验 →
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* 交互5：AI知识选择题 */}
+            <Link href="/interaction5">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-purple-200 cursor-pointer"
+              >
+                <div className="text-6xl mb-4">📝</div>
+                <h3 className="text-2xl font-bold text-purple-600 mb-3">
+                  交互5：AI知识选择题
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  测试你对AI和机器学习的理解！
+                </p>
+                <div className="text-sm text-gray-500">
+                  点击开始体验 →
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* 交互6：AI知识填空题 */}
+            <Link href="/interaction6">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white rounded-2xl shadow-xl p-6 border-4 border-orange-200 cursor-pointer"
+              >
+                <div className="text-6xl mb-4">✏️</div>
+                <h3 className="text-2xl font-bold text-orange-600 mb-3">
+                  交互6：AI知识填空题
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  选择正确的词来补全句子！
                 </p>
                 <div className="text-sm text-gray-500">
                   点击开始体验 →

@@ -104,6 +104,30 @@ export default function Home() {
           </div>
         </motion.div>
 
+        {/* 其他游戏学习 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mb-4"
+        >
+          <div className="max-w-7xl mx-auto text-left mb-2">
+            <h2 className="text-lg font-extrabold text-indigo-600">🎲 其他游戏学习</h2>
+            <p className="text-xs text-gray-600">通过小游戏巩固所学知识</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
+            {/* 词了个词 */}
+            <Link href="/word-tiles">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white rounded-xl shadow-lg p-2 border-2 border-indigo-200 cursor-pointer h-44 flex flex-col">
+                <div className="text-2xl mb-1 text-center">🧩</div>
+                <h3 className="text-base font-bold text-indigo-600 mb-1 text-center">词了个词</h3>
+                <p className="text-gray-600 mb-1 text-xs flex-grow text-center">三消规则：3个相同自动消除，槽位最多7个。</p>
+                <div className="text-sm text-gray-500 text-center">点击开始体验 →</div>
+              </motion.div>
+            </Link>
+          </div>
+        </motion.div>
+
         {/* LLM 类：4,5,8 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

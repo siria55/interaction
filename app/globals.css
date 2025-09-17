@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Web Fonts */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;600;700&display=swap');
+
 /* 全局样式 - 适合小学生的活泼风格 */
 @layer base {
   html {
-    font-family: 'Comic Sans MS', cursive, system-ui, sans-serif;
+    font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   }
   
   body {

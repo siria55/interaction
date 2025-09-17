@@ -35,11 +35,11 @@ export default function Home() {
             <li>拖拽分类（归类/匹配）</li>
           </ul>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <NonLinkCard title="拖拽调整" color="border-orange-200" emoji="🎛️" desc="拖动滑块/物体，实时调整参数或位置" />
-            <NonLinkCard title="拖拽消除" color="border-indigo-200" emoji="🧩" desc="三消/配对，拖动以匹配并消除" />
-            <NonLinkCard title="拖拽拼装" color="border-blue-200" emoji="🧱" desc="把零散元素拼成整体（几何/编程/生物）" />
-            <NonLinkCard title="拖拽排序" color="border-green-200" emoji="🗂️" desc="按序列或层级进行排序" />
-            <NonLinkCard title="拖拽分类" color="border-purple-200" emoji="🏷️" desc="把对象拖入分类桶，完成归类" />
+            <Card title="拖拽调整" href="/drag/adjust" color="border-orange-200" emoji="🎛️" desc="拖动滑块/物体，实时调整参数或位置（即将上线）" />
+            <Card title="拖拽消除" href="/drag/match" color="border-indigo-200" emoji="🧩" desc="三消/配对，拖动以匹配并消除（即将上线）" />
+            <Card title="拖拽拼装" href="/drag/assemble" color="border-blue-200" emoji="🧱" desc="把零散元素拼成整体（几何/编程/生物）（即将上线）" />
+            <Card title="拖拽排序" href="/drag/sort" color="border-green-200" emoji="🗂️" desc="按序列或层级进行排序（即将上线）" />
+            <Card title="拖拽分类" href="/drag/classify" color="border-purple-200" emoji="🏷️" desc="把对象拖入分类桶完成归类（即将上线）" />
           </div>
         </section>
 
@@ -54,11 +54,11 @@ export default function Home() {
             <li>隐喻演示（拟人化动画）</li>
           </ul>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <NonLinkCard title="过程演示" color="border-gray-200" emoji="⏯️" desc="点击下一步，逐步展开过程与推导" />
-            <NonLinkCard title="参数变化演示" color="border-indigo-200" emoji="📈" desc="自动播放参数变化对结果的影响" />
-            <NonLinkCard title="对比演示" color="border-blue-200" emoji="⚖️" desc="并行展示不同情况，直观看差异" />
-            <NonLinkCard title="模拟演示" color="border-green-200" emoji="🔬" desc="再现自然或工程现象的动态过程" />
-            <NonLinkCard title="隐喻演示" color="border-purple-200" emoji="💡" desc="用拟人化动画降低理解门槛" />
+            <Card title="过程演示" href="/demo/process" color="border-gray-200" emoji="⏯️" desc="点击下一步，逐步展开过程与推导（即将上线）" />
+            <Card title="参数变化演示" href="/demo/param" color="border-indigo-200" emoji="📈" desc="自动播放参数变化对结果的影响（即将上线）" />
+            <Card title="对比演示" href="/demo/compare" color="border-blue-200" emoji="⚖️" desc="并行展示不同情况，直观看差异（即将上线）" />
+            <Card title="模拟演示" href="/demo/simulate" color="border-green-200" emoji="🔬" desc="再现自然或工程现象的动态过程（即将上线）" />
+            <Card title="隐喻演示" href="/demo/metaphor" color="border-purple-200" emoji="💡" desc="用拟人化动画降低理解门槛（即将上线）" />
           </div>
         </section>
 

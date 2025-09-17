@@ -63,6 +63,32 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 多模态交互 */}
+        <section className="mb-6">
+          <h2 className="text-lg font-bold text-rose-600 mb-2">🎙️ 多模态交互</h2>
+          <ul className="text-xs text-gray-600 mb-2 list-disc list-inside">
+            <li>语音：说出“更大/更小/暂停/继续”，控制演示</li>
+            <li>摄像头：简单手势/运动检测，触发交互</li>
+          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <Card title="语音控制演示" href="/multimodal/voice" color="border-rose-200" emoji="🎤" desc="用语音指令控制动画" />
+            <Card title="摄像头手势演示" href="/multimodal/camera" color="border-cyan-200" emoji="📷" desc="检测运动/手势触发事件" />
+          </div>
+        </section>
+
+        {/* 生成式交互 */}
+        <section className="mb-6">
+          <h2 className="text-lg font-bold text-red-600 mb-2">✨ 生成式交互</h2>
+          <ul className="text-xs text-gray-600 mb-2 list-disc list-inside">
+            <li>手写输入识别：画一个数字 → 系统猜可能是几</li>
+            <li>输入文本：给出“情绪标签”和“关键词”</li>
+          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <Card title="手写数字识别" href="/generative/handwriting" color="border-red-200" emoji="🖌️" desc="在画板上写数字，查看识别结果" />
+            <Card title="文本情绪与关键词" href="/generative/text-labels" color="border-pink-200" emoji="🧠" desc="分析句子情绪并提取关键词" />
+          </div>
+        </section>
+
         {/* 探索式 / 沙盒交互 */}
         <section className="mb-6">
           <h2 className="text-lg font-bold text-green-600 mb-2">🧪 探索式 / 沙盒交互</h2>

@@ -19,7 +19,8 @@ export default function Home() {
           <p className="text-xs text-gray-600 mb-2">选择题 / 填空题 / 快速对错判断 / 即时反馈结果</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <Card title="选择题" href="/basic/choice" color="border-orange-200" emoji="📝" desc="选择后立即反馈" />
-            <Card title="填空题" href="/basic/fill" color="border-red-200" emoji="✏️" desc="选词填空，验证答案" />
+            <Card title="有选项填空" href="/basic/fill" color="border-red-200" emoji="✏️" desc="从选项中选择填空" />
+            <Card title="无选项填空" href="/basic/fill-free" color="border-pink-200" emoji="🖊️" desc="自主输入答案并验证" />
             <Card title="快速对错判断" href="/basic/judge" color="border-green-200" emoji="✅" desc="对/错即时反馈" />
           </div>
         </section>
@@ -35,11 +36,11 @@ export default function Home() {
             <li>拖拽分类（归类/匹配）</li>
           </ul>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <Card title="拖拽调整" href="/drag/adjust" color="border-orange-200" emoji="🎛️" desc="拖动滑块/物体，实时调整参数或位置（即将上线）" />
-            <Card title="拖拽消除" href="/drag/match" color="border-indigo-200" emoji="🧩" desc="三消/配对，拖动以匹配并消除（即将上线）" />
-            <Card title="拖拽拼装" href="/drag/assemble" color="border-blue-200" emoji="🧱" desc="把零散元素拼成整体（几何/编程/生物）（即将上线）" />
-            <Card title="拖拽排序" href="/drag/sort" color="border-green-200" emoji="🗂️" desc="按序列或层级进行排序（即将上线）" />
-            <Card title="拖拽分类" href="/drag/classify" color="border-purple-200" emoji="🏷️" desc="把对象拖入分类桶完成归类（即将上线）" />
+            <Card title="拖拽调整" href="/drag/adjust" color="border-orange-200" emoji="🎛️" desc="拖动滑块/物体，实时调整参数或位置" />
+            <Card title="拖拽消除" href="/drag/match" color="border-indigo-200" emoji="🧩" desc="三消/配对，拖动以匹配并消除" />
+            <Card title="拖拽拼装" href="/drag/assemble" color="border-blue-200" emoji="🧱" desc="把零散元素拼成整体（几何/编程/生物）" />
+            <Card title="拖拽排序" href="/drag/sort" color="border-green-200" emoji="🗂️" desc="按序列或层级进行排序" />
+            <Card title="拖拽分类" href="/drag/classify" color="border-purple-200" emoji="🏷️" desc="把对象拖入分类桶完成归类" />
           </div>
         </section>
 
@@ -54,11 +55,11 @@ export default function Home() {
             <li>隐喻演示（拟人化动画）</li>
           </ul>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <Card title="过程演示" href="/demo/process" color="border-gray-200" emoji="⏯️" desc="点击下一步，逐步展开过程与推导（即将上线）" />
-            <Card title="参数变化演示" href="/demo/param" color="border-indigo-200" emoji="📈" desc="自动播放参数变化对结果的影响（即将上线）" />
-            <Card title="对比演示" href="/demo/compare" color="border-blue-200" emoji="⚖️" desc="并行展示不同情况，直观看差异（即将上线）" />
-            <Card title="模拟演示" href="/demo/simulate" color="border-green-200" emoji="🔬" desc="再现自然或工程现象的动态过程（即将上线）" />
-            <Card title="隐喻演示" href="/demo/metaphor" color="border-purple-200" emoji="💡" desc="用拟人化动画降低理解门槛（即将上线）" />
+            <Card title="过程演示" href="/demo/process" color="border-gray-200" emoji="⏯️" desc="点击下一步，逐步展开过程与推导" />
+            <Card title="参数变化演示" href="/demo/param" color="border-indigo-200" emoji="📈" desc="自动播放参数变化对结果的影响" />
+            <Card title="对比演示" href="/demo/compare" color="border-blue-200" emoji="⚖️" desc="并行展示不同情况，直观看差异" />
+            <Card title="模拟演示" href="/demo/simulate" color="border-green-200" emoji="🔬" desc="再现自然或工程现象的动态过程" />
+            <Card title="隐喻演示" href="/demo/metaphor" color="border-purple-200" emoji="💡" desc="用拟人化动画降低理解门槛" />
           </div>
         </section>
 

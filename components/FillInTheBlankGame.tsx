@@ -260,7 +260,7 @@ export default function FillInTheBlankGame({ onGameComplete }: FillInTheBlankGam
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold"
               >
-                Why?
+                为什么？
               </motion.button>
               <motion.button
                 onClick={skipExplanation}
@@ -268,7 +268,7 @@ export default function FillInTheBlankGame({ onGameComplete }: FillInTheBlankGam
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold"
               >
-                Skip explanation
+                跳过讲解
               </motion.button>
             </>
           )}
@@ -280,7 +280,7 @@ export default function FillInTheBlankGame({ onGameComplete }: FillInTheBlankGam
               whileTap={{ scale: 0.95 }}
               className="bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold"
             >
-              {currentQuestion < questions.length - 1 ? 'Next Question →' : 'Complete'}
+              {currentQuestion < questions.length - 1 ? '下一题 →' : '完成'}
             </motion.button>
           )}
         </div>

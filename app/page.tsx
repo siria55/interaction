@@ -60,7 +60,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* 机器学习基础类：1,2,3 */}
+        {/* 神经网络基础类：1,2,3 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function Home() {
           className="mb-4"
         >
           <div className="max-w-7xl mx-auto text-left mb-2">
-            <h2 className="text-lg font-extrabold text-orange-600">🍀 机器学习基础类</h2>
+            <h2 className="text-lg font-extrabold text-orange-600">🍀 神经网络基础类</h2>
             <p className="text-xs text-gray-600">从图像与分类直观入门机器学习</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">

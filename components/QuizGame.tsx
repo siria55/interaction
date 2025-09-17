@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 
 interface QuizGameProps {
   onQuizComplete: (accuracy: number) => void
+  enableModelSelection?: boolean
 }
 
 interface Model {
@@ -15,7 +16,7 @@ interface Model {
   responses: string[]
 }
 
-export default function QuizGame({ onQuizComplete }: QuizGameProps) {
+export default function QuizGame({ onQuizComplete, enableModelSelection = false }: QuizGameProps) {
   const [selectedModel, setSelectedModel] = useState<string>('数学')
   const [inputText, setInputText] = useState('今天')
   const [generatedText, setGeneratedText] = useState('')
@@ -119,31 +120,39 @@ export default function QuizGame({ onQuizComplete }: QuizGameProps) {
         <h3 className="text-2xl font-bold text-purple-600 mb-2">
           🤖 大语言模型文字接龙
         </h3>
-        <p className="text-gray-600 mb-4">
-          选择一个模型并输入一些起始词。如果你缺乏灵感，试试输入"今天"，看看每个模型会给你什么！
-        </p>
+        {enableModelSelection ? (
+          <p className="text-gray-600 mb-4">
+            选择一个不同语料训练的模型，并输入起始词。如果你缺乏灵感，试试输入“今天”！
+          </p>
+        ) : (
+          <p className="text-gray-600 mb-4">
+            输入一些起始词，模型会继续接龙。如果你缺乏灵感，试试输入“今天”！
+          </p>
+        )}
       </div>
 
       {/* 主界面 - 深色主题 */}
       <div className="bg-gray-800 rounded-xl p-6">
-        {/* 模型选择按钮 */}
-        <div className="flex space-x-4 mb-6">
-          {models.map((model) => (
-            <motion.button
-              key={model.id}
-              onClick={() => setSelectedModel(model.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all ${
-                selectedModel === model.id
-                  ? 'bg-white text-gray-800 border-2 border-green-400'
-                  : 'bg-gray-700 text-white border-2 border-gray-600'
-              }`}
-            >
-              {model.name}
-            </motion.button>
-          ))}
-        </div>
+        {/* 模型选择按钮（可选） */}
+        {enableModelSelection && (
+          <div className="flex space-x-4 mb-6">
+            {models.map((model) => (
+              <motion.button
+                key={model.id}
+                onClick={() => setSelectedModel(model.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                  selectedModel === model.id
+                    ? 'bg-white text-gray-800 border-2 border-green-400'
+                    : 'bg-gray-700 text-white border-2 border-gray-600'
+                }`}
+              >
+                {model.name}
+              </motion.button>
+            ))}
+          </div>
+        )}
 
         {/* 文本生成区域 */}
         <div className="bg-black rounded-lg p-6 min-h-[200px]">
@@ -178,7 +187,7 @@ export default function QuizGame({ onQuizComplete }: QuizGameProps) {
             className="flex items-center space-x-2 bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold"
           >
             <span>🔄</span>
-            <span>Start over</span>
+            <span>重新开始</span>
           </motion.button>
           
           <motion.button
@@ -187,7 +196,7 @@ export default function QuizGame({ onQuizComplete }: QuizGameProps) {
             whileTap={{ scale: 0.95 }}
             className="bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold"
           >
-            Regenerate response
+            重新生成
           </motion.button>
         </div>
       </div>
@@ -220,7 +229,7 @@ export default function QuizGame({ onQuizComplete }: QuizGameProps) {
           className="mt-4 bg-green-50 rounded-lg p-4 border border-green-200"
         >
           <p className="text-green-700 text-center">
-            🎉 第 {totalRounds} 轮完成！当前模型：{currentModel.name}
+            🎉 第 {totalRounds} 轮完成！{enableModelSelection ? `当前模型：${currentModel.name}` : '继续接龙试试更多开头吧！'}
           </p>
         </motion.div>
       )}

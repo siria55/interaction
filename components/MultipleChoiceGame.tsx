@@ -283,7 +283,7 @@ export default function MultipleChoiceGame({ onQuizComplete }: MultipleChoiceGam
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 text-gray-600">
           <span>🔍</span>
-          <span className="text-sm">Here&apos;s the answer</span>
+          <span className="text-sm">这是答案</span>
         </div>
         
         <div className="flex space-x-3">
@@ -295,7 +295,7 @@ export default function MultipleChoiceGame({ onQuizComplete }: MultipleChoiceGam
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold"
               >
-                Why?
+                为什么？
               </motion.button>
               <motion.button
                 onClick={skipExplanation}
@@ -303,7 +303,7 @@ export default function MultipleChoiceGame({ onQuizComplete }: MultipleChoiceGam
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold"
               >
-                Skip explanation
+                跳过讲解
               </motion.button>
             </>
           )}

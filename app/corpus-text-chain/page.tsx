@@ -28,7 +28,7 @@ export default function Interaction5Page() {
   }
 
   return (
-    <main className="h-screen relative overflow-hidden">
+    <main className="min-h-screen relative">
       <ColorfulBackground />
       
       <div className="relative z-10 h-full flex flex-col">
@@ -37,7 +37,7 @@ export default function Interaction5Page() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center py-2"
+          className="text-center py-1"
         >
           <Link 
             href="/"
@@ -63,6 +63,7 @@ export default function Interaction5Page() {
           >
             <QuizGame 
               onQuizComplete={handleQuizComplete}
+              enableModelSelection={true}
             />
             
             {/* 控制按钮 */}

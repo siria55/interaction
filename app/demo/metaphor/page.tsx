@@ -62,7 +62,7 @@ function Flow({ start, mid, end }: { start: {x:number;y:number}; mid:{x:number;y
       { transform: `translate(${mid.x}px, ${mid.y}px)` },
       { transform: `translate(${end.x}px, ${end.y}px)` },
     ], { duration: 1500, easing: 'ease-in-out' })
-  }, [])
+  }, [start.x, start.y, mid.x, mid.y, end.x, end.y])
   return <div ref={ref} className="absolute w-3 h-3 rounded-full bg-purple-600 shadow" />
 }
 

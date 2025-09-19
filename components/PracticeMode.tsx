@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CorpusItem } from '@/config/corpus-data'
 
@@ -29,7 +29,85 @@ export function PracticeMode({ items, onClose, modelType }: PracticeModeProps) {
   const [completed, setCompleted] = useState(false)
 
   useEffect(() => {
-    generateQuestions()
+    const generateFillBlankQuestion = (item: CorpusItem, id: string): Question => {
+      const keywords = item.keywords || []
+      const keyword = keywords[Math.floor(Math.random() * keywords.length)]
+      const text = item.text
+      const blankText = text.replace(keyword, '____')
+
+      return {
+        id,
+        type: 'fill-blank',
+        question: `请填入空白处的内容：${blankText}`,
+        answer: keyword,
+        explanation: item.explanation || '无解释',
+        item
+      }
+    }
+
+    const generateMultipleChoiceQuestion = (item: CorpusItem, id: string): Question => {
+      const keywords = item.keywords || []
+      const correctAnswer = keywords[0]
+
+      // 生成错误选项
+      const allKeywords = items.flatMap(i => i.keywords || [])
+      const wrongOptions = allKeywords
+        .filter(k => k !== correctAnswer)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+
+      const options = [correctAnswer, ...wrongOptions].sort(() => Math.random() - 0.5)
+
+      return {
+        id,
+        type: 'multiple-choice',
+        question: `"${item.text}" 的主要关键词是？`,
+        options,
+        answer: correctAnswer,
+        explanation: item.explanation || '无解释',
+        item
+      }
+    }
+
+    const generateMatchKeywordsQuestion = (item: CorpusItem, id: string): Question => {
+      const keywords = item.keywords || []
+      const shuffledKeywords = [...keywords].sort(() => Math.random() - 0.5)
+
+      return {
+        id,
+        type: 'match-keywords',
+        question: `请选择与 "${item.text}" 相关的所有关键词：`,
+        options: [...shuffledKeywords, '无关词汇', '其他内容'].sort(() => Math.random() - 0.5),
+        answer: keywords,
+        explanation: item.explanation || '无解释',
+        item
+      }
+    }
+
+    const generateQuestionForItem = (item: CorpusItem, id: string): Question | null => {
+      if (!item.keywords || item.keywords.length === 0) return null
+
+      const questionTypes = ['fill-blank', 'multiple-choice', 'match-keywords']
+      const type = questionTypes[Math.floor(Math.random() * questionTypes.length)] as Question['type']
+
+      switch (type) {
+        case 'fill-blank':
+          return generateFillBlankQuestion(item, id)
+        case 'multiple-choice':
+          return generateMultipleChoiceQuestion(item, id)
+        case 'match-keywords':
+          return generateMatchKeywordsQuestion(item, id)
+        default:
+          return null
+      }
+    }
+
+    const practiceItems = items.slice(0, 10) // 取前10个练习
+    const generatedQuestions = practiceItems.map((item, index) => {
+      return generateQuestionForItem(item, index.toString())
+    }).filter(Boolean) as Question[]
+
+    setQuestions(generatedQuestions)
   }, [items])
 
   const generateQuestions = () => {

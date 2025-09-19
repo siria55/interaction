@@ -211,8 +211,15 @@ export const sections: Section[] = [
     title: '🧪 探索式 / 沙盒交互',
     titleColor: 'text-green-600',
     description: '自由探索，不是题目驱动，而是实验驱动',
-    gridCols: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+    gridCols: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
     cards: [
+      {
+        title: 'AI 小镇·神经网络乐园',
+        href: '/sandbox/ai-town',
+        color: 'border-emerald-300 hover:border-emerald-400',
+        emoji: '🏘️',
+        desc: 'Neuronville神经元镇 - 通过小镇居民学习神经网络'
+      },
       {
         title: '大模型文字接龙',
         href: '/sandbox/text-chain',
